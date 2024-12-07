@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html lang="ru">
+
+<head>
+    <style>
+        .min-sum {
+            margin-left: 60px;
+            font-size: 12px;
+        }
+
+
+        @media only screen and (max-width: 1024px) {
+
+            .container {
+                max-width: 90%;
+            }
+
+            [class="service_values"] {
+                max-width: 90%;
+            }
+
+            p {
+                max-width: 90%;
+            }
+
+            input {
+                max-width: 90%;
+            }
+        }
+
+
+        @media only screen and (max-width: 768px) {
+
+            .container {
+                max-width: 350px;
+            }
+
+            [class="service_values"] {
+                max-width: 320px;
+            }
+
+            p {
+                max-width: 320px;
+            }
+
+            input {
+                max-width: 320px;
+            }
+
+            select {
+                max-width: 320px;
+                font: 12px/30px "RobotoLight" !important;
+            }
+
+            [class="min-sum"] {
+                display: inline-block;
+                margin-left: auto !important;
+                font-size: initial !important;
+            }
+
+            [name="order[PAY_SUMM]"] {
+                max-width: 125px;
+            }
+        }
+
+        @media only screen and (max-width: 320px) {
+
+            .container {
+                max-width: 77vw;
+            }
+
+            [class="service_values"] {
+                max-width: 77vw;
+            }
+
+            p {
+                max-width: 77vw;
+            }
+
+            input {
+                max-width: 77vw;
+            }
+
+            select {
+                max-width: 77vw;
+                font: 10px/28px "RobotoLight" !important;
+            }
+
+            [class="min-sum"] {
+                display: inline-block;
+                margin-left: auto !important;
+                font-size: initial !important;
+            }
+
+            [name="order[PAY_SUMM]"] {
+                max-width: 80px;
+            }
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Онлайн-оплата за обучение и услуги - СибГИУ</title>
+    <meta name="description" content>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="libs/bootstrap/bootstrap-grid-3.3.1.min.css">
+    <link rel="stylesheet" href="libs/fancybox/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="libs/inputmask/inputmask.css">
+    <link rel="stylesheet" href="static/css/fonts.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/media.css">
+    <script>
+        window.settings = {
+            minAmount: 0.01,
+            bankFee: 0,
+            ajax_url: 'pr.ajax.php',
+            sessid: '123ddddd',
+        };
+        window.resultData = {};
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="col-md-12">
+                <img src="static/img/argemiahuh.png" height="140px">
+                <h1>
+                    Онлайн-оплата за обучение
+                    <br>
+                    и услуги СибГИУ
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <div class="col-md-12">
+                <form id="payment" method="post">
+                    <p class="text_commision" align="center">
+                        Комиссия
+                        <span style="font: 20px 'RobotoRegular'">0%</span>
+                        <br>
+                    </p>
+                    <p class="prop prop_student_fio">
+                        <label>ФИО обучающегося:</label>
+                        <input type="text" data-type="-" name="order[STUDENT_FIO]" class value
+                            placeholder="Петров Пётр Петрович">
+                    </p>
+                    <p class="prop prop_payer_fio">
+                        <label>ФИО плательщика:</label>
+                        <input type="text" data-type="-" name="order[PAYER_FIO]" class="required" value
+                            placeholder="Васильев Василий Васильевич">
+                    </p>
+                    <p>
+                        <label>Выберите услугу:</label>
+                        <select name="prop[service_type]" class="required" id="service">
+                            <option selected value rel="none">Укажите</option>
+                            <option value="studying" data-id="100">Плата за обучение</option>
+                            <option value="services" data-id="200">Плата за доп.услуги, курсы, тестир. и пр.</option>
+                            <option value="dormitory" data-id="300">Плата за проживание в общежитии</option>
+                            <option value="events" data-id="400">Плата за мероприятия</option>
+                            <option value="communal" data-id="500">Плата за коммунальные услуги</option>
+                            <option value="donation" data-id="600">Добровольные пожертвования</option>
+                            <option value="sport" data-id="700">Плата за физкульт.-оздоровит. мероприятия</option>
+                        </select>
+                    </p>
+
+                    <div id="studying" class="service_values" style="display: none;">
+                        <p>
+                            <label>Номер и дата договора:</label>
+                            <input type="text" name="order[param][0][value]" data-type="value" data-required="true"
+                                value style="width: 250px;" class="required">
+                            <input type="hidden" name="order[param][0][name]" data-type="name"
+                                value="Номер и дата договора">
+                        </p>
+                    </div>
+                    <div id="services" class="service_values" style="display: none;">
+                        <p>
+                            <label>Наименование услуги:</label>
+                            <input type="text" name="order[param][0][value]" data-type="value" data-required="true"
+                                value style="width: 250px;" class="required">
+                            <input type="hidden" name="order[param][0][name]" data-type="name"
+                                value="Наименование услуги">
+                        </p>
+                    </div>
+
+                    <div id="dormitory" class="service_values" style="display: none; margin-bottom: -18px;">
+                        <p>
+                            <label>Общежитие:</label>
+                            <select name="order[service]" data-name="dormitory" class="required">
+                                <option value="none">Укажите</option>
+                                <option value="301" data-code="dormitory_h1">Общежитие №3: пр. Пионерский 10</option>
+                                <option value="302" data-code="dormitory_h2">Общежитие №4: ул. Куйбышева 8</option>
+                                <option value="303" data-code="dormitory_h3">Общежитие №5: ул. Куйбышева 6</option>
+                                <option value="304" data-code="dormitory_h4">Общежитие №6: пр. Бардина 21</option>
+                                <option value="305" data-code="dormitory_h5">Общежитие №7: пр. Бардина 23</option>
+                            </select>
+                        <div class="param">
+                            <p>
+                                <label>Номер комнаты:</label>
+                                <input type="text" name="order[param][0][value]" data-type="value" data-required="true"
+                                    value style="width:  250px;" class="required">
+                                <input type="hidden" name="order[param][0][name]" data-type="name" value="Номер комнаты">
+                            </p>
+                            <p>
+                                <label>Номер и дата договора:</label>
+                                <input type="text" name="order[param][0][value]" data-type="value" data-required="true"
+                                    value style="width: 250px;" class="required">
+                                <input type="hidden" name="order[param][0][name]" data-type="name"
+                                    value="Номер и дата договора">
+                            </p>
+                        </div>
+                        </p>
+                    </div>
+                    <div id="events" class="service_values" style="display: none;">
+                        <p>
+                            <label>Наименование мероприятия:</label>
+                            <input type="text" name="order[param][0][value]" data-type="value" data-required="true"
+                                value style="width: 250px;" class="required">
+                            <input type="hidden" name="order[param][0][name]" data-type="name"
+                                value="Наименование мероприятия">
+                        </p>
+                    </div>
+
+                    <div id="communal" class="service_values" style="display: none; margin-bottom: -18px;">
+                        <p>
+                            <label>Общежитие:</label>
+                            <select name="order[service]" data-name="dormitory" class="required">
+                                <option value="none">Укажите</option>
+                                <option value="301" data-code="dormitory_h1">Общежитие №3: пр. Пионерский 10</option>
+                                <option value="302" data-code="dormitory_h2">Общежитие №4: ул. Куйбышева 8</option>
+                                <option value="303" data-code="dormitory_h3">Общежитие №5: ул. Куйбышева 6</option>
+                                <option value="304" data-code="dormitory_h4">Общежитие №6: пр. Бардина 21</option>
+                                <option value="305" data-code="dormitory_h5">Общежитие №7: пр. Бардина 23</option>
+                            </select>
+                        <div class="param">
+                            <p>
+                                <label>Номер комнаты:</label>
+                                <input type="text" name="order[param][0][value]" data-type="value" data-required="true"
+                                    value style="width:  250px;" class="required">
+                                <input type="hidden" name="order[param][0][name]" data-type="name" value="Номер комнаты">
+                            </p>
+                            <p>
+                                <label>Номер и дата договора:</label>
+                                <input type="text" name="order[param][0][value]" data-type="value" data-required="true"
+                                    value style="width: 250px;" class="required">
+                                <input type="hidden" name="order[param][0][name]" data-type="name"
+                                    value="Номер и дата договора">
+                            </p>
+                        </div>
+                        </p>
+                    </div>
+
+                    <div id="sport" class="service_values" style="display: none;">
+                        <p>
+                            <label>За занятие:</label>
+                            <input type="text" name="order[param][0][value]" data-type="value" data-required="true"
+                                value style="width: 250px;" class="required">
+                            <input type="hidden" name="order[param][0][name]" data-type="name"
+                                value="За занятие">
+                        </p>
+                    </div>
+
+                    <p class="prop prop_pay_summ">
+                        <label>Сумма к оплате:</label>
+                        <input type="text" data-type="summ" name="order[PAY_SUMM]" class="required" value placeholder>
+                        &nbsp;руб.
+                    </p>
+                    <p class="prop prop_phone">
+                        <label>Контактный телефон:</label>
+                        <input type="text" data-type="phone" name="order[PHONE]" class="required" value
+                            placeholder="+7 912 345-67-89">
+                    </p>
+                    <p class="prop prop_email">
+                        <label>Электронная почта:</label>
+                        <input type="text" data-type="email" name="order[EMAIL]" class="required" value
+                            placeholder="youremail@example.ru">
+                    </p>
+                    <p class="personal">
+                        <input type="checkbox" class="required" name="personal" id="personal" value="ok">
+                        <b>Согласен с условиями оказания услуг и на обработку моих персональных данных</b>
+                        <br>
+
+                        <span>Подробнее об этом в разделе <a href="#personal-modal" class="modalbox">Особенности
+                                онлайн-оплаты банковскими картами</a></span>
+                    </p>
+
+                    <p>
+                        <button type="submit">Перейти к оплате</button>
+                    </p>
+                    <!-- <p class="text">Для осуществления платежа будет выполнен переход на сайт ####.</p> -->
+                </form>
+                <div id="loader" class="modal"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-12" align="center">
+                <img src="static/img/paykeeper.png" width="100">
+                <div class="copy">
+                    2024 ©
+                    <a href="https://sibsiu.ru">sibsiu.ru</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">Вы используете  <strong>устаревший</strong> браузер. Пожалуйста <a href="#">обновите ваш браузер</a>.</p>
+        <![endif]-->
+    <script src="libs/jquery/jquery-1.11.1.min.js"></script>
+    <script src="libs/fancybox/jquery.fancybox.min.js"></script>
+    <script src="libs/inputmask/jquery.inputmask.bundle.min.js"></script>
+    <script src="libs/jquery-mousewheel/jquery.mousewheel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

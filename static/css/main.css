@@ -1,0 +1,180 @@
+*::-webkit-input-placeholder {
+	color: #8f8f8f;
+	opacity: 1;
+}
+*:-moz-placeholder {
+	color: #8f8f8f;
+	opacity: 1;
+}
+*::-moz-placeholder {
+	color: #8f8f8f;
+	opacity: 1;
+}
+*:-ms-input-placeholder {
+	color: #8f8f8f;
+	opacity: 1;
+}
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+	
+}
+body input:required:valid,
+body textarea:required:valid {
+	
+}
+
+.header {
+	padding: 30px 0 0;
+	text-align: center;
+}
+
+.header h1 {
+	margin: 0;
+	padding: 0;
+	margin-top: 20px;
+	font: 30px/40px "RobotoMedium";
+	font-weight: normal;
+}
+
+body {
+	font-family: "RobotoRegular";
+	font-size: 18px;
+	background-color: #fafafa;
+}
+
+a {
+	color: #00a5e6;
+}
+
+.container {
+	width: 780px;
+}
+
+.content form p {
+	clear: both;
+	padding: 0 10px;
+	border-right:0;
+	border-left: 0;
+	position: relative;
+}
+
+.content form p.text {
+	font: 18px/24px "RobotoLight";
+}
+
+.content form label {
+	float: left;
+	width: 270px;
+	margin-top: 12.5px;
+	line-height: 25px;
+}
+
+.content form input[type="text"], 
+.content form select {
+	height: 50px;
+	padding: 10px 25px;
+	border: 1px solid #d0d0d0;
+	border-radius: 8px;
+	font: 16px/30px "RobotoLight";
+	width: 400px;
+}
+
+
+
+.content form button {
+	height: 50px;
+	color: #fff;
+	background-color: #1771ba;
+	padding: 10px 45px;
+	display: block;
+	margin: auto;
+	border: 0;
+	font: 18px/30px "RobotoLight";
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
+
+.content form button:hover{
+	background-color: #14609e;
+}
+
+.content form button:disabled {
+	background-color: #666;
+}
+
+.content form .personal {
+	font: 14px/24px "RobotoLight";
+}
+.content form .personal b{
+	font: 16px/24px "RobotoMedium";
+	font-weight: normal;
+}
+.content form .personal b:hover {
+	cursor: pointer;
+}
+.content form .personal input{
+	height: 15px;
+	width: 15px;
+}
+.footer {
+	padding-top: 15px;
+}
+.footer img {
+	margin: 5px;
+}
+.footer .copy {
+	padding: 15px 0;
+	font: 14px/24px "RobotoLight";
+}
+
+.content form .prop.prop_email input,
+.content form .prop.prop_phone input { width: 250px; }
+.content form .prop.prop_pay_summ input { width: 150px; }
+
+.content form .required.error {
+    border: 1px solid #e60f4b;
+}
+.content .personal.error>b {
+    color: #e60f4b;
+}
+
+
+.personal-modal {
+	display: none;
+	padding: 30px;
+	width: 740px;
+	font: 14px/21px "RobotoLight";
+}
+.personal-modal h2 {
+	margin: 0;
+	padding: 0;
+	font: 26px/36px "RobotoLight";
+	font-weight: normal;
+}
+.personal-modal b {
+	font-family: "RobotoMedium";
+	font-weight: normal;
+ }
+
+
+ #error-modal { display: none; }
+.error-modal {
+	padding: 10px;
+	width: 460px;
+	font: 14px/21px "RobotoLight";
+	text-align: center;
+}
+.error-modal h2 {
+	margin: 0;
+	padding: 0;
+	color: #e60f4b;
+	font: 26px/36px "RobotoLight";
+	font-weight: normal;
+}
+
+
+#loader span.counter { display: inline-block; min-width: 50px; }
+
+#response-modal { text-align: center; }
+#response-modal .comment { font-size: 85%; }
