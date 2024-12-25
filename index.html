@@ -36,8 +36,11 @@
         @media only screen and (max-width: 768px) {
 
             .container {
-                max-width: 420px;
-                margin: 0 auto;
+                max-width: 100%; /* Ограничить ширину на 100% */
+                padding: 0; /* Убрать внутренние отступы */
+                margin: 0 auto; /* Центрировать */
+                box-sizing: border-box;
+                
             }
 
             [class="service_values"] {
@@ -45,7 +48,7 @@
             }
 
             p {
-                max-width: 320px;
+                max-width: 100%;
             }
 
             input {
@@ -76,8 +79,11 @@
         @media only screen and (max-width: 320px) {
 
             .container {
-                max-width: 77vw;
-                margin: 0 auto;
+                max-width: 100%; /* Ограничить ширину на 100% */
+                padding: 0; /* Убрать внутренние отступы */
+                margin: 0 auto; /* Центрировать */
+                box-sizing: border-box;
+                
             }
 
             [class="service_values"] {
